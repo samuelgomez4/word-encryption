@@ -12,8 +12,6 @@ const decryption = {
   ober: "o",
   ufat: "u",
 };
-let sentence = "Hola como estas?";
-
 function encrypt(sentence) {
   let newSentence = sentence
     .toLowerCase()
@@ -27,9 +25,19 @@ function decrypt(sentence) {
     .replace(/ai|enter|imes|ober|ufat/g, (letter) => decryption[letter]);
   return newSentence;
 }
+let message = document.getElementById("message");
 
-encrypted = encrypt(sentence);
-console.log(encrypted);
+let encryptButton = document.getElementById("encrypt");
+encryptButton.addEventListener("click", () => {
+  message.value = encrypt(message.value);
+});
 
-decrypted = decrypt(encrypted);
-console.log(decrypted);
+let decryptButton = document.getElementById("decrypt");
+decryptButton.addEventListener("click", () => {
+  message.value = decrypt(message.value);
+});
+
+let copyButton = document.getElementById("copy");
+copyButton.addEventListener("click", () => {
+  navigator.clipboard.writeText(message.value);
+});
