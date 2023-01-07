@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Word encrypter</title>
 </head>
 <body>
@@ -11,13 +12,15 @@
         <h1>ENCRYPTER</h1>
     </header>
     <main>
-        <label for="message">Type the message you want to encrypt. Remember to use lowercase only and no special characters.</label><br><br>
-        <textarea name="message" id="message" cols="30" rows="10"></textarea>
-        <br><br>
+        <label for="message">Type the message you want to encrypt. Remember to use lowercase letters only and no special characters.</label><br><br>
+        <textarea name="message" id="message" cols="30" rows="10" class="message" maxlength="3500"></textarea>
+        <div id="transition" class="transition--hide"></div>
+        <br>
         <button id="encrypt">Encrypt</button>
         <button id="decrypt">Decrypt</button>
         <button id="copy">Copy</button>
-        <button id="reset">Reset</button>
+        <button id="reset">Reset</button>  
+
     </main>
     <footer>
 
