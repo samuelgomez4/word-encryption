@@ -9,17 +9,31 @@
 </head>
 <body>
     <header>
-        <h1>ENCRYPTER</h1>
+        <div id="title">
+            <div class="text text--title">E</div>
+            <div class="text text--title">N</div>
+            <div class="text text--title">C</div>
+            <div class="text text--title">R</div>
+            <div class="text text--title">Y</div>
+            <div class="text text--title">P</div>
+            <div class="text text--title">T</div>
+            <div class="text text--title">E</div>
+            <div class="text text--title">R</div>
+        </div>
     </header>
     <main>
         <label for="message">Type the message you want to encrypt. Remember to use lowercase letters only and no special characters.</label><br><br>
-        <textarea name="message" id="message" cols="30" rows="10" class="message" maxlength="3500"></textarea>
+        <div class="wrap-textarea" id="wrap-textarea">
+            <textarea name="message" id="message" cols="30" rows="10" class="message" maxlength="3500" spellcheck="false"></textarea>
+        </div>
         <div id="transition" class="transition--hide"></div>
         <br>
-        <button id="encrypt">Encrypt</button>
-        <button id="decrypt">Decrypt</button>
-        <button id="copy">Copy</button>
-        <button id="reset">Reset</button>  
+        <div class="buttons" id="buttons">
+            <button id="encrypt" class="button">Encrypt</button>
+            <button id="decrypt" class="button">Decrypt</button>
+            <button id="copy" class="button">Copy</button>
+            <button id="reset" class="button">Reset</button>
+        </div>  
 
     </main>
     <footer>

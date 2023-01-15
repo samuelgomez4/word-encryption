@@ -4,6 +4,12 @@ let message = document.getElementById("message");
 //Transition is a division that is used to show an animation between words.
 let transition = document.getElementById("transition");
 
+// Since the textarea has rounded borders it's neccesary to wrap the textarea to include an scrollbar that fits properly.
+let messageWrap = document.getElementById("wrap-textarea");
+
+//Buttons are wrapped in another division so they can be hidden when clicking a button;
+let buttons = document.getElementById("buttons");
+
 //The challenge proposes that only lowercase letters can be used. With this event we prevent the user from typing whatever is not a letter. We allow also the user to type uppercase letters but these are transform into lowercase using CSS for displaying and using .toLowerCase() for the actual value. The regular expression also includes the space key.
 message.addEventListener("keypress", (e) => {
   if (!e.key.match(/[a-zA-Z\s]/)) {
@@ -55,9 +61,11 @@ function animate(conversion) {
       message.value = "i wonder what the decryption of an empty message is";
     }
   } else {
-    //When the button is clicked, the text area is hidden and the division called transition is shown. The reason to do this is because animating the text within a textarea is not possible. This is done by changing the class of the element. Each class has its own specifications in CSS.
-    message.className = "message--hide";
+    //When the button is clicked, the text area is hidden and the division called transition is shown. The reason to do this is because animating the text within a textarea is not possible. This is done by changing the class of the element. Each class has its own specifications in CSS. Buttons are hidden as well to prevent users from clicking them during the animation. 
+    messageWrap.className = "wrap-textarea--hide";
     transition.className = "transition--show";
+    buttons.className = "buttons--hide";
+
 
     //The words that are typed by the user are saved in an array.
     let unchangedWords = message.value.toLowerCase().split(" ");
@@ -85,14 +93,26 @@ function animate(conversion) {
       }, randomTimeAnimation * 1000 + 60); //The set time out for the word to be changed has to be mutiplied by 1000 to be converted from miliseconds to seconds. A time of 60 is added because of the keyframe in CSS (at 6% the visibility is hidden so the change of word is not noticeable).
     }
 
-    //After the transition is completed, the division is hidden and the textarea is displayed again. The transition division is reset.
+    //After the transition is completed, the division is hidden and the textarea is displayed again as well as the buttons. The transition division is reset.
     setTimeout(() => {
-      message.className = "message";
+      messageWrap.className = "wrap-textarea";
       transition.className = "transition--hide";
+      buttons.className = "buttons";
       transition.innerHTML = "";
     }, 2060);
   }
 }
+
+//This event allows title animation as soon as the page loads completely. The animation works similar to the textarea animation. Each word has a different an randomly generated animation delay.
+let titleWords = document.querySelectorAll(".text--title");
+window.addEventListener("load", () => {
+  titleWords.forEach(word => {
+    let randomTimeAnimation = (Math.random() * (1.5 - 0.5) + 0.5).toFixed(2);
+    word.style.animationDelay = `${randomTimeAnimation}s`;
+    
+  });
+})
+
 
 //We create an event listener so when the encrypt button is clicked the encrypt function is triggered.
 let encryptButton = document.getElementById("encrypt");
